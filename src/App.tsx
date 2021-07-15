@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import AppComponentPage from './page/AppComponent.page';
 import AuthPage from './page/Auth.page';
@@ -14,7 +13,14 @@ function App() {
         <Route path={['/login', '/signup']} exact>
           <AuthPage />
         </Route>
-        <Route path={['/dashboard', '/recordings','/batch/:batchNum/lecture/:lectureNum']} exact>
+        <Route
+          path={[
+            '/dashboard',
+            '/recordings',
+            '/batch/:batchNum/lecture/:lectureNum',
+          ]}
+          exact
+        >
           <AppComponentPage />
         </Route>
         <Route>
