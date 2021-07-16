@@ -1,21 +1,48 @@
 import { Switch } from '@headlessui/react';
 import { FC, memo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '../component/Buttons';
 import InputField from '../component/Input.field';
 import { FiUser, FiLock } from 'react-icons/fi';
+import { FaSpinner } from 'react-icons/fa';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
   const [enabled, setEnabled] = useState(false);
+  const history = useHistory();
 
-  const [data, setData] = useState("");
-  
+  const {
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    values,
+    touched,
+    errors,
+    isSubmitting,
+  } = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8,({min})=> `Atleast ${min} chars required`),
+    }),
+    onSubmit: (data, { setSubmitting }) => {
+      console.log('submitting data', data);
+      setTimeout(() => {
+        console.log('submitted data successfully');
+        history.push('/dashboard');
+      }, 4000);
+    },
+  });
 
   return (
-    <div className="flex flex-col w-1/2 ">
-      <div className="w-full px-32 mt-4">
+    <div className="flex flex-col w-screen h-screen lg:w-1/2">
+      <div className="w-full px-5 mt-4 sm:px-28">
         <div className="text-gray-600">
           <h1 className="text-5xl">
             Log In to <span className="text-blue-500">DEVS</span>
@@ -30,7 +57,7 @@ const Login: FC<Props> = (props) => {
             </Link>
           </p>
         </div>
-        <form className="w-full mt-14">
+        <form className="w-full mt-10" onSubmit={handleSubmit}>
           <div className="relative">
             <InputField
               labelContent="Email address"
@@ -39,10 +66,14 @@ const Login: FC<Props> = (props) => {
               className="pl-10"
               type="email"
               autoComplete="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
             <FiUser className="absolute w-6 h-6 text-blue-500 fill-login top-3" />
           </div>
-          <div className="relative mt-5">
+          {touched.email && <div className="text-red-400">{errors.email}</div>}
+          <div className="relative mt-4">
             <InputField
               labelContent="Password"
               inputName="password"
@@ -50,10 +81,16 @@ const Login: FC<Props> = (props) => {
               className="pl-10"
               type="password"
               autoComplete="current-password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
             <FiLock className="absolute w-6 h-6 text-blue-500 fill-login top-3" />
           </div>
-          <div className="flex justify-between mt-10">
+          {touched.password && (
+            <div className="text-red-400">{errors.password};</div>
+          )}
+          <div className="flex justify-between mt-8">
             <Switch.Group>
               <div className="flex items-center">
                 <Switch.Label className="mr-4">Show Password</Switch.Label>
@@ -75,9 +112,16 @@ const Login: FC<Props> = (props) => {
               </div>
             </Switch.Group>
             <Button
+              type="submit"
               theme="blue"
               className="shadow-3xl hover:shadow-none"
-              children="Log In"
+              children={
+                isSubmitting ? (
+                  <FaSpinner className="w-4 h-4 animate-spin"></FaSpinner>
+                ) : (
+                  'Log In'
+                )
+              }
             />
           </div>
           <div className="flex items-center justify-center mt-10">
@@ -96,7 +140,7 @@ const Login: FC<Props> = (props) => {
               </label>
             </div>
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-5 text-center">
             <Link
               to="/forget-password"
               className="text-lg font-semibold tracking-wider text-blue-500"
@@ -105,16 +149,14 @@ const Login: FC<Props> = (props) => {
             </Link>
           </div>
         </form>
-        <div className="mt-20">
-          <p className="text-sm text-gray-600">
-            <span className="text-blue-500">&copy;</span> 2021 All Right
-            Reserved. <span className="text-blue-500">DEVS</span> is product of
-            DevsLane.{' '}
-            <span className="text-blue-500">Cookie Preferences, </span>{' '}
-            <span className="text-blue-500">Privacy</span> ,and{' '}
-            <span className="text-blue-500">Terms.</span>
-          </p>
-        </div>
+
+        <p className="mt-12 text-sm text-gray-600">
+          <span className="text-blue-500">&copy;</span> 2021 All Right Reserved.{' '}
+          <span className="text-blue-500">DEVS</span> is product of Devs.{' '}
+          <span className="text-blue-500">Cookie Preferences, </span>{' '}
+          <span className="text-blue-500">Privacy</span> ,and{' '}
+          <span className="text-blue-500">Terms.</span>
+        </p>
       </div>
     </div>
   );

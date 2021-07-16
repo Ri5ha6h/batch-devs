@@ -3,8 +3,13 @@ import { useParams } from 'react-router-dom';
 
 interface Props {}
 
+interface RouterParams {
+  lectureNum: string;
+  batchNum: string;
+}
+
 const Lecture: FC<Props> = (props) => {
-  const { lectureNum, batchNum } = useParams<any>();
+  const { lectureNum, batchNum } = useParams<RouterParams>();
 
   return (
     <div>
