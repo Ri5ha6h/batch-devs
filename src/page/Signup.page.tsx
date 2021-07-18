@@ -39,7 +39,7 @@ const Signup: FC<Props> = (props) => {
     });
 
   return (
-    <div className="flex flex-col w-screen h-screen lg:w-1/2">
+    <div className="flex flex-col w-screen h-screen lg:flex-1">
       <div className="w-full px-5 mt-4 sm:px-28">
         <div className="text-gray-600">
           <h1 className="text-5xl">Get started with a free account</h1>

@@ -9,7 +9,7 @@ interface Props {}
 const AuthPage: FC<Props> = (props) => {
   return (
     <Switch>
-      <div className="flex justify-between h-screen">
+      <div className="flex justify-between h-screen justify-items-stretch font-nunito">
         <Route path="/login">
           <LoginPage />
         </Route>

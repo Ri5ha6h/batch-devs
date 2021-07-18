@@ -5,7 +5,7 @@ interface Props {}
 
 const Dashboard: FC<Props> = (props) => {
   return (
-    <div>
+    <div className="absolute left-1/4 top-13.3 bg-accent w-screen h-screen bg-opacity-15">
       {' '}
       this is dashboard page{' '}
       <Link to="/recordings">
