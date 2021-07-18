@@ -22,7 +22,6 @@ const Input: FC<Props> = ({
       <input
         {...rest}
         id={inputName}
-        name={inputName}
         placeholder={placeholder}
         required
         className={

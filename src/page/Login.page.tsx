@@ -15,11 +15,10 @@ const Login: FC<Props> = (props) => {
   const history = useHistory();
 
   const {
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    values,
+   handleSubmit,
+   getFieldProps,
     touched,
+    values,
     errors,
     isSubmitting,
   } = useFormik({
@@ -66,24 +65,21 @@ const Login: FC<Props> = (props) => {
               className="pl-10"
               type="email"
               autoComplete="email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
+             {...getFieldProps("email")}
             />
             <FiUser className="absolute w-6 h-6 text-blue-500 fill-login top-3" />
           </div>
           {touched.email && <div className="text-red-400">{errors.email}</div>}
           <div className="relative mt-4">
             <InputField
+             
               labelContent="Password"
               inputName="password"
               placeholder="Password"
               className="pl-10"
-              type="password"
+              type={enabled && values.password ? 'text' : 'password'}
               autoComplete="current-password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              {...getFieldProps("password")}
             />
             <FiLock className="absolute w-6 h-6 text-blue-500 fill-login top-3" />
           </div>
