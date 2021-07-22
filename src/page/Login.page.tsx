@@ -1,8 +1,8 @@
 import { Switch } from '@headlessui/react';
 import { FC, memo, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import Button from '../component/Buttons';
-import InputField from '../component/Input.field';
+import Button from '../component/Button/Buttons';
+import InputField from '../component/Input/Input.field';
 import { FiUser, FiLock } from 'react-icons/fi';
 import { FaSpinner } from 'react-icons/fa';
 import * as yup from 'yup';
@@ -15,8 +15,8 @@ const Login: FC<Props> = (props) => {
   const history = useHistory();
 
   const {
-   handleSubmit,
-   getFieldProps,
+    handleSubmit,
+    getFieldProps,
     touched,
     values,
     errors,
@@ -28,7 +28,10 @@ const Login: FC<Props> = (props) => {
     },
     validationSchema: yup.object().shape({
       email: yup.string().required().email(),
-      password: yup.string().required().min(8,({min})=> `Atleast ${min} chars required`),
+      password: yup
+        .string()
+        .required()
+        .min(8, ({ min }) => `Atleast ${min} chars required`),
     }),
     onSubmit: (data, { setSubmitting }) => {
       console.log('submitting data', data);
@@ -57,35 +60,32 @@ const Login: FC<Props> = (props) => {
           </p>
         </div>
         <form className="w-full mt-10" onSubmit={handleSubmit}>
-          <div className="relative">
-            <InputField
-              labelContent="Email address"
-              inputName="email"
-              placeholder="Username"
-              className="pl-10"
-              type="email"
-              autoComplete="email"
-             {...getFieldProps("email")}
-            />
-            <FiUser className="absolute w-6 h-6 text-blue-500 fill-login top-3" />
-          </div>
-          {touched.email && <div className="text-red-400">{errors.email}</div>}
-          <div className="relative mt-4">
-            <InputField
-             
-              labelContent="Password"
-              inputName="password"
-              placeholder="Password"
-              className="pl-10"
-              type={enabled && values.password ? 'text' : 'password'}
-              autoComplete="current-password"
-              {...getFieldProps("password")}
-            />
-            <FiLock className="absolute w-6 h-6 text-blue-500 fill-login top-3" />
-          </div>
-          {touched.password && (
-            <div className="text-red-400">{errors.password};</div>
-          )}
+          <InputField
+            labelContent="Email address"
+            inputName="email"
+            placeholder="Username"
+            className="pl-10"
+            type="email"
+            autoComplete="email"
+            Icon={FiUser}
+            iconPlace="left"
+            touched={touched.email}
+            errors={errors.email}
+            {...getFieldProps('email')}
+          />
+          <InputField
+            labelContent="Password"
+            inputName="password"
+            placeholder="Password"
+            className="pl-10 "
+            type={enabled && values.password ? 'text' : 'password'}
+            autoComplete="current-password"
+            Icon={FiLock}
+            iconPlace="left"
+            touched={touched.password}
+            errors={errors.password}
+            {...getFieldProps('password')}
+          />
           <div className="flex justify-between mt-8">
             <Switch.Group>
               <div className="flex items-center">
@@ -109,7 +109,6 @@ const Login: FC<Props> = (props) => {
             </Switch.Group>
             <Button
               type="submit"
-              theme="blue"
               className="shadow-3xl hover:shadow-none"
               children={
                 isSubmitting ? (

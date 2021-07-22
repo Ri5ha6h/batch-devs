@@ -9,7 +9,7 @@ interface Props {}
 
 const Header: FC<Props> = (props) => {
   return (
-    <div className="w-screen px-10 py-2 bg-secondary h-13.3">
+    <div className="w-screen px-10 py-2 bg-secondary h-13.3 fixed top-0 z-10">
       <div className="flex justify-between">
         <div className="flex">
           <ul className="flex">

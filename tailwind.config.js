@@ -1,24 +1,22 @@
-const colors = require('tailwindcss/colors');
+// const colors = require('tailwindcss/colors');
 
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    colors: {
-      primary: '#4361ee',
-      secondary: '#0e1726',
-      accent: '#888ea8',
-      logo: '#e0e6ed',
-      search: 'rgba(81, 83, 101, 0.28)',
-      black: colors.black,
-      white: colors.white,
-      gray: colors.coolGray,
-      blue: colors.blue,
-    },
     fontFamily: {
       nunito: 'Nunito',
     },
     extend: {
+      colors: {
+        primary: '#4361ee',
+        secondary: '#0e1726',
+        accent: '#888ea8',
+        logo: '#e0e6ed',
+        search: 'rgba(81, 83, 101, 0.28)',
+        setting: '#1b2e4b',
+        dropdown: '#3b3f5c',
+      },
       boxShadow: {
         '3xl': '0 10px 20px -10px rgba(37, 99, 235, 0.6)',
       },
@@ -32,6 +30,7 @@ module.exports = {
         8.5: '2.125rem',
         12.5: '3.125rem',
         13.3: '3.3125rem',
+        26.6: '6.625rem',
         92.5: '23.125rem',
       },
     },

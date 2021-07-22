@@ -5,12 +5,14 @@ interface Props {}
 
 const Dashboard: FC<Props> = (props) => {
   return (
-    <div className="absolute left-1/4 top-13.3 bg-accent w-screen h-screen bg-opacity-15">
+    <div className="absolute w-full h-screen bg-accent bg-opacity-15">
       {' '}
-      this is dashboard page{' '}
-      <Link to="/recordings">
-        <span className="text-red-400">go to recordings</span>
-      </Link>
+      <div className="absolute left-60 top-26.6 h-screen">
+        this is dashboard page{' '}
+        <Link to="/recordings">
+          <span className="text-red-400">go to recordings</span>
+        </Link>
+      </div>
     </div>
   );
 };
