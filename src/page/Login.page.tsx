@@ -20,6 +20,7 @@ const Login: FC<Props> = (props) => {
     touched,
     values,
     errors,
+    isValid,
     isSubmitting,
   } = useFormik({
     initialValues: {
@@ -64,7 +65,7 @@ const Login: FC<Props> = (props) => {
             labelContent="Email address"
             inputName="email"
             placeholder="Username"
-            className="pl-10"
+            className="pl-10 "
             type="email"
             autoComplete="email"
             Icon={FiUser}
@@ -109,6 +110,7 @@ const Login: FC<Props> = (props) => {
             </Switch.Group>
             <Button
               type="submit"
+              disabled={!isValid}
               className="shadow-3xl hover:shadow-none"
               children={
                 isSubmitting ? (
