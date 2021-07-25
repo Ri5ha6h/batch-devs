@@ -1,8 +1,8 @@
 import Button from './Buttons';
 
 export default {
-  component: Button,
   title: 'Button',
+  component: Button,
   argTypes: {
     theme: {
       options: ['primary', 'secondary'],
@@ -16,9 +16,5 @@ export default {
 };
 
 export const Main = (args: any) => (
-  <Button children="login" {...args} />
+  <Button disabled={true} children="login" {...args} />
 );
-
-
-
-

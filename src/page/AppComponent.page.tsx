@@ -16,6 +16,7 @@ const AppComponent: FC<Props> = (props) => {
         <Header />
         <Navbar />
         <SideBar />
+        <div className="absolute w-full h-screen bg-accent bg-opacity-15  top-26.6">
         <Route path="/dashboard">
           <DashboardPage />
         </Route>
@@ -25,6 +26,7 @@ const AppComponent: FC<Props> = (props) => {
         <Route path="/batch/:batchNum/lecture/:lectureNum">
           <LecturePage />
         </Route>
+        </div>
       </div>
     </Switch>
   );

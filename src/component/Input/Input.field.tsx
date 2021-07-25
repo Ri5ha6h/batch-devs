@@ -24,7 +24,7 @@ const Input: FC<Props> = ({
   ...rest
 }) => {
   const place = iconPlace === 'left' ? ' ' : ' right-0 ';
-  const touch = touched && ' border-red-500 ';
+  const touch = errors && touched && ' border-red-500 ';
 
   return (
     <div className="h-16 ">

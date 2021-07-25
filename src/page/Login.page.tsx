@@ -111,7 +111,7 @@ const Login: FC<Props> = (props) => {
             <Button
               type="submit"
               disabled={!isValid}
-              className="shadow-3xl hover:shadow-none"
+              className="shadow-3xl hover:shadow-none "
               children={
                 isSubmitting ? (
                   <FaSpinner className="w-4 h-4 animate-spin"></FaSpinner>

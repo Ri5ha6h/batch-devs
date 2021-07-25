@@ -5,9 +5,17 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   look?: 'solid' | 'outline';
   className?: string;
   children?: React.ReactNode;
+  disabled?: boolean;
 }
 
-const Button: FC<Props> = ({ children, theme, look, className, ...rest }) => {
+const Button: FC<Props> = ({
+  children,
+  theme,
+  look,
+  className,
+  disabled,
+  ...rest
+}) => {
   let lookClass = '';
 
   let themeClass = '';
@@ -26,23 +34,27 @@ const Button: FC<Props> = ({ children, theme, look, className, ...rest }) => {
   }
 
   return (
-    <button
-      {...rest}
-      className={
-        'px-4 py-2 focus:outline-none rounded-md border ' +
-        lookClass +
-        themeClass +
-        className
-      }
-    >
-      {children}
-    </button>
+    <>
+      <button
+        {...rest}
+        className={
+          'px-4 py-2 focus:outline-none rounded-md border ' +
+          lookClass +
+          themeClass +
+          className +
+          (disabled ? ' bg-opacity-15 text-blue-500 ' : '  ')
+        }
+      >
+        {children}
+      </button>
+    </>
   );
 };
 
 Button.defaultProps = {
   theme: 'primary',
   look: 'solid',
+  // disabled: false,
 };
 
 export default memo(Button);

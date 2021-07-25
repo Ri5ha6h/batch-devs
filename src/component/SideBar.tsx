@@ -4,7 +4,7 @@ interface Props {}
 
 const SideBar: FC<Props> = (props) => {
   return (
-    <div className="absolute w-60 h-screen text-white bg-gray-400 top-26.6 overflow-y-hidden">
+    <div className="absolute w-56 h-screen text-white bg-accent bg-opacity-15 top-26.6 transform ease-in-out duration-500 -translate-x-full md:-translate-x-0 ">
       {' '}
       Sidebar
     </div>
